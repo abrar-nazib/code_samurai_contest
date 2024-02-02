@@ -1,11 +1,27 @@
 const Book = require('../models/Book');
 
+
 exports.getBooksController = async (req, res) => {
     try {
-        const books = await Book.find();
+        let query = {};
+        let sort = {};
+
+        // Search fields
+        if (req.query.title) query.title = req.query.title;
+        if (req.query.author) query.author = req.query.author;
+        if (req.query.genre) query.genre = req.query.genre;
+
+        // Sorting fields
+        if (req.query.sort) {
+            sort[req.query.sort] = req.query.order === 'DESC' ? -1 : 1;
+        } else {
+            sort['id'] = req.query.order === 'DESC' ? -1 : 1; // Default sort by ID in ascending order
+        }
+
+        const books = await Book.find(query).sort(sort);
         res.json({ books: books });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    } catch (err) {
+        res.status(500).json({ message: "Internal Server Error!" });
     }
 };
 
