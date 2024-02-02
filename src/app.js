@@ -3,15 +3,17 @@ require("dotenv").config();
 // Imports
 const express = require("express");
 const mongoose = require("mongoose");
-const swaggerJsDoc = require("swagger-jsdoc");
-const swaggerUI = require("swagger-ui-express");
+
 
 const app = express();
 
 
 // Get the environment variables
-const { DB_HOST, DB_NAME, DB_PORT } = process.env;
-const MONGODB_URI = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
+
+const MONGODB_URI = `mongodb+srv://nazibabrar2001:samuraipassword@samurai.ivjfoqx.mongodb.net/`;
+
+
 const PORT = process.env.PORT;
 
 const middlewares = [
