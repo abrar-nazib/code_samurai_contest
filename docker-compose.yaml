@@ -1,10 +1,12 @@
-version: "3.8"
+version: "3"
+
 services:
-  api:
-    build: ./src
-    container_name: team_unknowns
+  app:
+    image: app
+    build:
+      context: .
     ports:
-      - '5000:5000'
+      - "5000:5000"
     env_file:
       - .env
     environment:
@@ -30,3 +32,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+
+volumes:
+  mongodata:
+    driver: local

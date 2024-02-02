@@ -11,7 +11,8 @@ const app = express();
 // Get the environment variables
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
-const MONGODB_URI = `mongodb+srv://nazibabrar2001:samuraipassword@samurai.ivjfoqx.mongodb.net/book_db`;
+const MONGODB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/`;
+
 
 
 const PORT = process.env.PORT;

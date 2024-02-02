@@ -1,12 +1,11 @@
-FROM node:20-alpine
+# syntax=docker/dockerfile:1
+FROM node:18.19.0-bookworm-slim
 
 WORKDIR /app
 
-COPY package.json .
-
-RUN npm install
-
 COPY . .
+
+RUN bash -c "npm install"
 
 EXPOSE 5000
 
