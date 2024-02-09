@@ -6,7 +6,7 @@ services:
     build:
       context: .
     ports:
-      - "8000:8000"
+      - "5000:8000"
     env_file:
       - .env
     environment:
@@ -14,7 +14,7 @@ services:
       DB_PORT: 27017
       DB_USER: root
       DB_PASSWORD: root
-      DB_NAME: book_db
+      DB_NAME: station_db
     depends_on:
       - mongo
     links:

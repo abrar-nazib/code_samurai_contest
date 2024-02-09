@@ -1,10 +1,24 @@
-const booksRoute = require("./booksRoute");
-
+const userRoute = require("../routes/userRoute");
+const stationRoute = require("../routes/stationRoute");
+const walletRoute = require("../routes/walletRoute");
+const trainRoute = require("../routes/trainRoute");
 
 const routes = [
   {
-    path: "/api/books",
-    handler: booksRoute,
+    path: "/api/users",
+    handler: userRoute,
+  },
+  {
+    path: "/api/stations",
+    handler: stationRoute,
+  },
+  {
+    path: "/api/wallets",
+    handler: walletRoute,
+  },
+  {
+    path: "/api/trains",
+    handler: trainRoute,
   },
   {
     path: "/api/",

@@ -11,8 +11,10 @@ const app = express();
 // Get the environment variables
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 
-const MONGODB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/`;
+// const MONGODB_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/`;
 
+
+const MONGODB_URI = "mongodb://localhost:27017/";
 
 
 const PORT = process.env.PORT;
