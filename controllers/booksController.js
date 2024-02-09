@@ -1,5 +1,5 @@
 const Book = require('../models/Book');
-
+const selectedFields = 'id title author genre price';
 
 exports.getBooksController = async (req, res) => {
     try {
@@ -18,7 +18,9 @@ exports.getBooksController = async (req, res) => {
             sort['id'] = req.query.order === 'DESC' ? -1 : 1; // Default sort by ID in ascending order
         }
 
-        const books = await Book.find(query).sort(sort);
+        const books = await Book.find(query)
+            .select(selectedFields)
+            .sort(sort);
         res.json({ books: books });
     } catch (err) {
         res.status(500).json({ message: "Internal Server Error!" });
@@ -28,7 +30,7 @@ exports.getBooksController = async (req, res) => {
 exports.getBookByIdController = async (req, res) => {
     const { id } = req.params;
     try {
-        const book = await Book.findOne({ id });
+        const book = await Book.findOne({ id }).select(selectedFields);
         if (!book)
             return res.status(404).json({ message: `book with id: ${id} was not found` });
         res.json(book);
@@ -43,6 +45,10 @@ exports.addBookController = async (req, res) => {
     const book = new Book({ id, title, author, genre, price });
     try {
         const newBook = await book.save();
+
+        // Send only the selected fields to the client
+
+
         res.status(201).json(newBook);
     } catch (error) {
         res.status(400).json({ message: error.message });
@@ -54,7 +60,7 @@ exports.updateBookController = async (req, res) => {
     const { title, author, genre, price } = req.body;
 
     try {
-        const book = await Book.findOne({ id });
+        const book = await Book.findOne({ id }).select(selectedFields);
 
         if (!book)
             return res.status(404).json({ message: `book with id: ${id} was not found` });
@@ -66,6 +72,8 @@ exports.updateBookController = async (req, res) => {
         if (price) book.price = price;
 
         const updatedBook = await book.save();
+        // Filter the selected fields to return
+
         res.json(updatedBook);
 
     } catch (error) {

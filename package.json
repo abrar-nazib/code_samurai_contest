@@ -1,8 +1,8 @@
 {
-  "name": "jrc-transportation-tracker",
+  "name": "RUET_UNKNOWNS Code Samurai",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
